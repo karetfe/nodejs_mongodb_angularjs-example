@@ -20,11 +20,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-<<<<<<< HEAD
-app.set('superSecret', require('./config/jwt'));
-=======
+
+
+
 app.set('superSecret', require('./config/jwt'));//secret variable
->>>>>>> 9c521219d17c0651ae0bebaf0fc1b09237b5305e
+
 
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -62,11 +62,9 @@ app.post('/authenticate', function(req, res) {
         // return the information including token as JSON
         res.json({
           success: true,
-<<<<<<< HEAD
-          message: 'Authenticated',
-=======
+
           message: 'Authenticated: Enjoy your token!',
->>>>>>> 9c521219d17c0651ae0bebaf0fc1b09237b5305e
+
           token: token
         });
       }
@@ -78,12 +76,10 @@ app.post('/authenticate', function(req, res) {
 
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
-<<<<<<< HEAD
 app.use('/categories', require('./routes/categories'));
 app.use('/equipements', require('./routes/equipements'));
 app.use('/robots', require('./routes/robots'));
-=======
->>>>>>> 9c521219d17c0651ae0bebaf0fc1b09237b5305e
+
 app.use('/', require('./routes'));
 
 
