@@ -4,7 +4,13 @@
         <button type="button" class="collapsed" id="navbar-toggle"><i class="icon fa fa-bars"></i></button>
       </div>
       <div class="nav-header-right">
-       
+          <nav class="main-nav">
+          <ul>           
+                <li ng-show="token" ><a ui-sref="equipements">Equipements</a></li>
+                <li ng-show="token" ><a ui-sref="robots">Robots</a></li>
+                <li><a ui-sref="about">About Us</a></li>
+          </ul>
+        </nav>
         <div class="header-right">
           <div class="header-right-btns">
             <ul>
@@ -17,6 +23,7 @@
            
             <li ng-show="!token" ><button ui-sref="register" class="btn btn-22 yellow">Join</button></li>
             <li ng-show="token" ><button ui-sref="logout" class="btn btn-22 yellow">Logout</button></li>
+                
 		
             </ul>
           </div>
