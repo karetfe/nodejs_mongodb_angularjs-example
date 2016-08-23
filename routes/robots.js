@@ -3,16 +3,35 @@ var express = require('express');
 var router = express.Router();
 
 /*Get liste */
-router.get('/', function(req, res, next) {
-  models.robot.find({}).populate('robot').exec(function(err, robots){
-  if(err) res.json({error: err});
-        res.json(robots);
-  });
+//router.get('/', function(req, res, next) {
+//models.robot.find({}).populate('user').exec(function(err, robots){
+//  if(err) res.json({error: err});
+//       res.json(robots);
+//  });
+//});
+
+
+router.get('/', function(req, res, next){
+    models.robot.aggregate([
+        {
+            "$group": {
+                "_id": "$users_id",
+                "robots": { "$push": "$$ROOT" }
+            }
+        }
+    ]).exec(function(err, results){ 
+        if (err) res.json({error: err});
+        models.user.populate(results, { "path": "_id" }, function(err, result) {
+            if(err) res.json({error: err});
+            console.log(result);
+            res.json(result);
+        });
+     });   
 });
 
 /* Ajouter  */
 router.post('/', function(req, res) {
-  var robot = new models.robot({reference: req.body.reference, nom: req.body.nom, utilisateur: req.body.utilisateur.username});
+  var robot = new models.robot({reference: req.body.reference, nom: req.body.nom, flag: req.body.flag, user: req.body.user});
   robot.save(function(err, b){
     if(err) res.json({error: err});
         res.json(b);
@@ -21,7 +40,7 @@ router.post('/', function(req, res) {
 
 /* Get by Id*/
 router.get('/:id', function(req, res, next) {
-  models.utilisateur.find({}).exec(function(e, users){
+  models.user.find({}).exec(function(e, users){
     models.robot.findById(req.params.id, function(err, robot) {
       if(err) res.json({error: err});
       res.json({error: err});

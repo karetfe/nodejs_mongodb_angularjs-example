@@ -1,0 +1,74 @@
+<!-- ************************ Header Bottom | Page Title ************************ -->
+  <section class="header-bottom">
+    <article>
+      <div class="container"></div>
+    </article>
+  </section>
+  <!-- ************************ Breadcrumbs ************************ -->
+  <section class="breadcrumb">
+    <article class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <ul>
+            <li><span class="fa fa-home"></span>&nbsp; You are here:</li>
+            <li><a ui-sref="home">Home</a></li>
+            <li class="fa fa-angle-right"></li>
+            <li>Register</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+  </section>
+  
+  <!-- ************************ Page Content ************************ -->
+ 
+  
+  <section class="gray">
+    <article class="container contactpage">
+      <div class="row">
+        
+          <div class="col-lg-12">
+            <h3>Sign Up</h3>
+        <form ng-submit="register()" class="form-ui" method="post" id="contact-form">            
+            <div id="basic-data" class="form-wizard active">           	            
+              <div class="form-group">
+                <div class="form-left">
+                  <input type="text" value="" ng-model="username" class="form-control" placeholder="UserName" name="username" id="username">
+                </div>
+                <div class="form-left">
+                  <input type="password" value="" ng-model="password" class="form-control" placeholder="Password" name="password" id="password">
+                </div>
+                  <div class="form-left">
+                  <input type="text" value="" ng-model="nom_prenom" class="form-control" placeholder="Full Name" name="nom_prenom" id="nom_prenom">
+                </div>
+                <div class="form-left">
+                  <input type="email" value="" ng-model="email" class="form-control" placeholder="Email" name="email" id="email">
+                </div>
+                  <div class="form-left">
+                  <input type="text" value="" ng-model="adresse" class="form-control" placeholder="Your adresse" name="adresse" id="adresse">
+                </div>
+                <div class="form-left">
+                  <input type="sexe" value="" ng-model="sexe" class="form-control" placeholder="Sexe" name="sexe" id="sexe">
+                </div>
+                  <div class="form-left">
+                  <input type="text" value="" ng-model="reference" class="form-control" placeholder="Reference Robot" name="reference" id="reference">
+                </div>
+                <div class="form-left">
+                  <input type="nom" value="" ng-model="nom" class="form-control" placeholder="Nom Robot" name="nom" id="nom">
+                </div>
+                  
+                <div class="clear"></div>
+              </div>
+           
+              <div class="form-group">
+                <button type="submit" ng-click="register()" class="btn btn-22 yellow">Sign up</button>
+              </div>
+             
+            </div>
+            
+            </form>
+          </div>
+               
+      </div>
+    </article>
+  </section>

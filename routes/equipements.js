@@ -2,12 +2,31 @@ var express = require('express');
 var router = express.Router();
 var models = require('../models');
 
-/* Get List */
+/* Get List 
 router.get('/', function(req, res, next) {
   models.equipement.find({}).populate('category').exec(function(err, equipements){
     if(err) res.json({error: err});
         res.json(equipements);
   });
+});
+*/
+/* Get list*/
+router.get('/', function(req, res, next){
+    models.equipement.aggregate([
+        {
+            "$group": {
+                "_id": "$categorie_id",
+                "equipements": { "$push": "$$ROOT" }
+            }
+        }
+    ]).exec(function(err, results){ 
+        if (err) res.json({error: err});
+        models.category.populate(results, { "path": "_id" }, function(err, result) {
+            if(err) res.json({error: err});
+            console.log(result);
+            res.json(result);
+        });
+     });   
 });
 
 router.post('/', function(req, res, next) {

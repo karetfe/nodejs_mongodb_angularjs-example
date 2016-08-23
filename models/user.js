@@ -1,19 +1,22 @@
 var mongoose = require('../config/db');
 
 var UserSchema = mongoose.Schema({
+	
     nom_prenom: String,
-<<<<<<< HEAD
-    assword: String,
-=======
     password: String,
->>>>>>> 9c521219d17c0651ae0bebaf0fc1b09237b5305e
-    username: String,
-    email: String,
+	username: String,
+	email: String,
+    //username: { String, unique:true, required:true },
+	//email: { String, unique:true, required:true },
     date_naissance: Date,
     adresse: String,
     sexe: String,
-    
+	equipements:[{type: mongoose.Schema.Types.ObjectId, ref: 'Equipement'}],
+	robots:[{type: mongoose.Schema.Types.ObjectId, ref: 'Robot'}],
+	
     admin: Boolean
 });
 
 module.exports = mongoose.model('User', UserSchema);
+
+	

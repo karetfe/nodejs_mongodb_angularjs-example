@@ -1,0 +1,31 @@
+    <div class="container">
+      <div id="logo">
+        <a ui-sref="home"><img src="assets/images/logo2.png" alt="Roomy" /></a>
+        <button type="button" class="collapsed" id="navbar-toggle"><i class="icon fa fa-bars"></i></button>
+      </div>
+      <div class="nav-header-right">
+       
+        <div class="header-right">
+          <div class="header-right-btns">
+            <ul>
+              <li ng-show="!token" class="login-panel">
+                <a ui-sref="login">Login</a><span></span>   
+              </li>
+            <li ng-show="token" class="login-panel">
+                <a ui-sref="profile">Profile</a><span></span>                
+              </li>
+           
+            <li ng-show="!token" ><button ui-sref="register" class="btn btn-22 yellow">Join</button></li>
+            <li ng-show="token" ><button ui-sref="logout" class="btn btn-22 yellow">Logout</button></li>
+		
+            </ul>
+          </div>
+          <div class="search-box border-right">
+            <form method="get" action="index.html">
+              <input type="text" value="Search Here" name="s" id="keyword">
+              <span class="icon fa fa-search transition-color" title="Search"></span>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>

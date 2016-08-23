@@ -20,11 +20,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-<<<<<<< HEAD
-app.set('superSecret', require('./config/jwt'));
-=======
+
 app.set('superSecret', require('./config/jwt'));//secret variable
->>>>>>> 9c521219d17c0651ae0bebaf0fc1b09237b5305e
+
 
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -37,15 +35,17 @@ app.use(function (req, res, next) {
 
 app.post('/authenticate', function(req, res) {
   var User = require('./models/user');
+     var Robot = require('./models/robot');
+    
   // find the user
   User.findOne({
     username: req.body.username
-  }, function(err, user) {
+  }, function(err, user,robot) {
 
     if (err) throw err;
 
     if (!user) {
-      res.json({ success: false, message: 'Authentication failed. User not found.' });
+      res.json({ success: false, message: 'Authentication failed. User not found :-)' });
     } else if (user) {
 
       // check if password matches
@@ -56,19 +56,17 @@ app.post('/authenticate', function(req, res) {
         // if user is found and password is right
         // create a token
         var token = jwt.sign(user, require('./config/jwt'), {
-          expiresInMinutes: 1440 // expires in 24 hours
+          //expiresInMinutes: 1440 // expires in 24 hours
         });
 
         // return the information including token as JSON
-        res.json({
-          success: true,
-<<<<<<< HEAD
-          message: 'Authenticated',
-=======
+        res.json({user, robot,                
+          success: true, 
           message: 'Authenticated: Enjoy your token!',
->>>>>>> 9c521219d17c0651ae0bebaf0fc1b09237b5305e
-          token: token
+          token: token,
+		  
         });
+	
       }
 
     }
@@ -76,15 +74,13 @@ app.post('/authenticate', function(req, res) {
   });
 });
 
+app.use('/', require('./routes'));
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
-<<<<<<< HEAD
 app.use('/categories', require('./routes/categories'));
 app.use('/equipements', require('./routes/equipements'));
 app.use('/robots', require('./routes/robots'));
-=======
->>>>>>> 9c521219d17c0651ae0bebaf0fc1b09237b5305e
-app.use('/', require('./routes'));
+
 
 
 // catch 404 and forward to error handler
