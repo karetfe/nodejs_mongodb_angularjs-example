@@ -20,7 +20,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
 app.set('superSecret', require('./config/jwt'));//secret variable
 
 
@@ -60,11 +59,12 @@ app.post('/authenticate', function(req, res) {
         });
 
         // return the information including token as JSON
-        res.json({user, robot,                
+
+        res.json({user,               
           success: true, 
           message: 'Authenticated: Enjoy your token!',
           token: token,
-		  
+
         });
 	
       }
@@ -80,7 +80,6 @@ app.use('/users', require('./routes/users'));
 app.use('/categories', require('./routes/categories'));
 app.use('/equipements', require('./routes/equipements'));
 app.use('/robots', require('./routes/robots'));
-
 
 
 // catch 404 and forward to error handler

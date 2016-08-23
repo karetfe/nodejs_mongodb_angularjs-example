@@ -3,6 +3,7 @@
 
 var mongoose = require('mongoose');
 
+
 //mongoose.connect('mongodb://localhost/roomie');
 
 //dblocal = 'mongodb://localhost/roomie';
