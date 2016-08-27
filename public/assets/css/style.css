@@ -315,7 +315,7 @@ a:hover {
 }
 .store-btn:hover,#menu-toggle:hover {
     background: #fdc400;
-    border-color: #00ceb8;
+    border-color: transparent;
     color: #fff;
 }
 
@@ -432,18 +432,18 @@ a:hover {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 .gallery-nav {
-    color: #6ecba9;
+    color: #e5863b;
     font-size: 2em;
     margin: 0 1em;
     padding: 10px 19px;
     line-height: 0;
-    border: 1px solid #6ecba9;
+    border: 1px solid #e5863b;
     border-radius: 50%;
 }
 
 .gallery-nav:hover,.gallery-nav:focus,.gallery-nav:active {
     color: #fff;
-    background:#6ecba9;
+    background:#e5863b;
 }
 
 
