@@ -687,7 +687,7 @@ p.client-name {
     font-size: 18px;
 }
 #contactForm input:active,#contactForm textarea:active,#contactForm input:hover,#contactForm textarea:hover {
-    border: 2px solid #00ceb8;
+    border: 2px solid #e5863b;
 }
 
 #contactForm #name, #contactForm #email, #contactForm #phone {
