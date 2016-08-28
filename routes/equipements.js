@@ -30,7 +30,7 @@ router.get('/', function(req, res, next){
 });
 
 router.post('/', function(req, res, next) {
-  var equipement = new models.equipement({libelle: req.body.libelle,marque: req.body.marque, user:req.body.user,category: req.body.category} );
+  var equipement = new models.equipement({libelle: req.body.libelle, marque: req.body.marque,  user:req.body.user, category: req.body.category } );
    //var equipement = new models.equipement(req.body);
   equipement.save(function(err, b){
    if(err) res.json({error: err});

@@ -31,7 +31,7 @@ router.get('/', function(req, res, next){
 
 /* Ajouter  */
 router.post('/', function(req, res) {
-  var robot = new models.robot({reference: req.body.reference, nom: req.body.nom, flag: req.body.flag, user: req.body.user});
+  var robot = new models.robot({reference: req.body.reference, nom: req.body.nom, user: req.body.user});
   robot.save(function(err, b){
     if(err) res.json({error: err});
         res.json(b);
