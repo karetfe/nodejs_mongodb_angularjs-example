@@ -15,7 +15,7 @@ router.get('/', function(req, res, next){
     models.equipement.aggregate([
         {
             "$group": {
-                "_id": "$categorie_id",
+                "_id": "$categorie",
                 "equipements": { "$push": "$$ROOT" }
             }
         }
