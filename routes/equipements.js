@@ -10,6 +10,14 @@ router.get('/', function(req, res, next) {
   });
 });
 */
+
+/* Get By user_id*/
+router.get('/search/user/:_id',function(req,res){
+	models.equipement.find({user:req.params._id},function(err,equipement){
+		if(err) res.json({error: err});
+		res.json(equipement);
+    });
+});
 /* Get list by category*/
 router.get('/', function(req, res, next){
     models.equipement.aggregate([

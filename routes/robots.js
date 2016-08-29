@@ -15,7 +15,7 @@ router.get('/', function(req, res, next){
     models.robot.aggregate([
         {
             "$group": {
-                "_id": "$users_id",
+                "_id": "$user",
                 "robots": { "$push": "$$ROOT" }
             }
         }
