@@ -39,8 +39,9 @@ router.post('/', function(req, res) {
      });
 
 /* Get by Id*/
+
 router.get('/:id', function(req, res, next) {
-  models.user.find({}).exec(function(e, users){*/
+  models.user.find({}).exec(function(e, users){
     models.robot.findById(req.params.id, function(err, robot) {
       if(err) res.json({error: err});
       res.json({error: err});
