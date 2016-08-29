@@ -39,17 +39,17 @@ router.post('/', function(req, res) {
      });
 
 /* Get by Id*/
-router.get('/:_id', function(req, res, next) {
-  /*models.user.find({}).exec(function(e, user){*/
+router.get('/:id', function(req, res, next) {
+  models.user.find({}).exec(function(e, users){*/
     models.robot.findById(req.params.id, function(err, robot) {
       if(err) res.json({error: err});
       res.json({error: err});
     });
-  /*});*/
+  });
     
 });
-
-router.put('/:_id', function(req, res, next) {
+/* PUT*/
+router.put('/:id', function(req, res, next) {
      var data = req.body;
         if(data.posts == undefined) data.posts = [];
   models.robot.findByIdAndUpdate(req.params.id, data, {new: true}, function(err, robot) {
