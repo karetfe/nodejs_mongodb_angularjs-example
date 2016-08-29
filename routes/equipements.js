@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
   });
 });
 */
-/* Get list*/
+/* Get list by category*/
 router.get('/', function(req, res, next){
     models.equipement.aggregate([
         {
@@ -22,6 +22,25 @@ router.get('/', function(req, res, next){
     ]).exec(function(err, results){ 
         if (err) res.json({error: err});
         models.category.populate(results, { "path": "_id" }, function(err, result) {
+            if(err) res.json({error: err});
+            console.log(result);
+            res.json(result);
+        });
+     });   
+});
+
+/* Get list by category*/
+router.get('/eq', function(req, res, next){
+    models.equipement.aggregate([
+        {
+            "$group": {
+                "_id": "$user",
+                "equipements": { "$push": "$$ROOT" }
+            }
+        }
+    ]).exec(function(err, results){ 
+        if (err) res.json({error: err});
+        models.user.populate(results, { "path": "_id" }, function(err, result) {
             if(err) res.json({error: err});
             console.log(result);
             res.json(result);
