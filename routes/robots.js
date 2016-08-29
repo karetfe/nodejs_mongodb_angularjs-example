@@ -29,7 +29,7 @@ router.get('/', function(req, res, next){
      });   
 });
 
-/* Ajouter  */
+/* Add */
 router.post('/', function(req, res) {
   var robot = new models.robot({reference: req.body.reference, nom: req.body.nom, user: req.body.user});
   robot.save(function(err, b){
@@ -40,7 +40,7 @@ router.post('/', function(req, res) {
 
 /* Get by Id*/
 router.get('/:id', function(req, res, next) {
-  models.user.find({}).exec(function(e, users){
+  models.user.find({}).exec(function(e, user){
     models.robot.findById(req.params.id, function(err, robot) {
       if(err) res.json({error: err});
       res.json({error: err});
