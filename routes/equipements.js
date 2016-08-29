@@ -57,7 +57,7 @@ router.post('/', function(req, res, next) {
   });
 });
 
-/* GET*/
+/* GET by Id*/
 router.get('/:id', function(req, res, next) {
   models.category.find({}).exec(function(e, categories){
     models.equipement.findById(req.params.id, function(err, equipement) {
@@ -65,6 +65,13 @@ router.get('/:id', function(req, res, next) {
         res.json(equipement);
         });
   });
+});
+/* Get By user_id*/
+router.get('/search/user/:_id',function(req,res){
+	models.equipement.find({user:req.params._id},function(err,equipement){
+		if(err) res.json({error: err});
+		res.json(equipement);
+    });
 });
 /* Put */
 router.put('/:id', function(req, res, next) {
