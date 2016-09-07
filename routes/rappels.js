@@ -12,7 +12,7 @@ router.get('/search/robot/:_id',function(req,res){
 });
 /* Get list by robot*/
 router.get('/', function(req, res, next){
-    models.equipement.aggregate([
+    models.rappel.aggregate([
         {
             "$group": {
                 "_id": "$robot",
