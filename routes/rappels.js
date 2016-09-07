@@ -39,10 +39,10 @@ router.post('/', function(req, res, next) {
 });
 
 /* update rappel  */
-router.put('/:_id', function(req, res, next) {
+router.put('/:id', function(req, res, next) {
     var data = req.body;
     if(data.posts == undefined) data.posts = [];    
-    models.rappel.findByIdAndUpdate(req.params.id,data,{"$inc": { "modif": 1} }, {new: true}, function(err, c){
+    models.rappel.findByIdAndUpdate(req.params.id,data, $inc: { modif: 1} , {new: true}, function(err, c){
         if(err) res.json({error: err});
         res.json(c);
   });
