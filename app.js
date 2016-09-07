@@ -80,6 +80,7 @@ app.use('/users', require('./routes/users'));
 app.use('/categories', require('./routes/categories'));
 app.use('/equipements', require('./routes/equipements'));
 app.use('/robots', require('./routes/robots'));
+app.use('/rappels', require('./routes/rappels'));
 
 
 // catch 404 and forward to error handler
