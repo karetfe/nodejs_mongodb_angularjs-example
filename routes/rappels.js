@@ -38,7 +38,7 @@ router.post('/', function(req, res, next) {
   });
 });
 
-/* update rappel  ,data,{$inc: { modif: 1} }*/
+/* update rappel by autoincrement modif {$inc: { modif: 1} }*/
 router.put('/:id', function(req, res, next) {
     //var data = req.body;
     //if(data.posts == undefined) data.posts = [];    
