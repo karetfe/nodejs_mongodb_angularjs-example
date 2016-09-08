@@ -38,13 +38,13 @@ router.post('/', function(req, res, next) {
   });
 });
 
-/* update rappel  ,{$inc: { modif: 1} }*/
+/* update rappel  ,data,{$inc: { modif: 1} }*/
 router.put('/:id', function(req, res, next) {
-    var data = req.body;
-    if(data.posts == undefined) data.posts = [];    
-    models.rappel.findByIdAndUpdate(req.params.id,data, {new: true}, function(err, c){
+    //var data = req.body;
+    //if(data.posts == undefined) data.posts = [];    
+    models.rappel.findByIdAndUpdate(req.params.id,{$inc: { modif: 1}}, {new: true}, function(err, c){
         if(err) res.json({error: err});
-        res.json(c);
+        res.json(c).send({modif: c.modif});
   });
 });
 
