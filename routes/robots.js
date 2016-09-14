@@ -10,7 +10,7 @@ var router = express.Router();
 //  });
 //});
 
-
+/*Get robot by user*/
 router.get('/', function(req, res, next){
     models.robot.aggregate([
         {
@@ -31,7 +31,7 @@ router.get('/', function(req, res, next){
 
 /* Add */
 router.post('/', function(req, res) {
-  var robot = new models.robot({reference: req.body.reference, nom: req.body.nom, user: req.body.user});
+  var robot = new models.robot({reference: req.body.reference, nom: req.body.nom, user: req.body.user, rappels: req.body.rappels});
   robot.save(function(err, b){
     if(err) res.json({error: err});
         res.json(b);

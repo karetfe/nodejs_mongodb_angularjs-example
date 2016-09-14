@@ -37,7 +37,7 @@ router.get('/', function(req, res, next){
      });   
 });
 
-/* Get list by category*/
+/* Get list by user*/
 router.get('/eq', function(req, res, next){
     models.equipement.aggregate([
         {
