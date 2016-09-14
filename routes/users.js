@@ -16,8 +16,8 @@ var user = new models.user({
      admin: false
  });
 var robot = new models.robot({
-   reference: req.body.reference,	
-     nom: req.body.nom
+    reference: req.body.reference,	
+    nom: req.body.nom
   		
  });
  //user.save(function(err, u){
@@ -27,7 +27,7 @@ var robot = new models.robot({
  robot.save(function(err, u){
     if(err) res.json(err);
 	//save user only after robot is successfully saved and push its id into robots array.
-	user.robots.push(u._id);
+	user.robots.push(u._id, u.referencen, u.nom);
 	user.save(function(err, user){
 		if(err) res.json(err);
 		res.json(user);
