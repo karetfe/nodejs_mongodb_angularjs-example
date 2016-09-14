@@ -6,7 +6,7 @@ var RappelSchema = mongoose.Schema({
     heure_rappel: String,
     type: String,
     modif: { type: Number, default: 0 },
-    suppre: ['0', '1'],
+    suppre: String,
     robot: { type: mongoose.Schema.Types.ObjectId, ref: 'Robot' }
 });
 
