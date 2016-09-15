@@ -60,7 +60,7 @@ app.post('/authenticate', function(req, res) {
 
         // return the information including token as JSON
 
-        res.json({user,robot,              
+        res.json({user,              
           success: true, 
           message: 'Authenticated: Enjoy your token!',
           token: token,

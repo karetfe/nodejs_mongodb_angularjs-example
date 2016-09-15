@@ -20,10 +20,12 @@ var robot = new models.robot({
     nom: req.body.nom
   		
  });
+    
  //user.save(function(err, u){
  //    if(err) res.json(err);
  //    res.json(u);
  //})
+    
  robot.save(function(err, u){
     if(err) res.json(err);
 	//save user only after robot is successfully saved and push its id into robots array.
