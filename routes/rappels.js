@@ -22,10 +22,10 @@ router.get('/search/robot/:_id',function(req,res){
 /* Get By robot_id where suppr=0 */
 router.get('/search/robot/suppre/:_id',function(req,res){
   var suppre = req.body.suppre;   
-	models.rappel.find({robot:req.params._id}, {suppre==0}, function(err,rappel){
+	models.rappel.find({robot:req.params._id}, function(err,rappel){
 		if(err) res.json({error: err});
 		res.json(rappel);
-    });
+    }).select({ "suppre": 0});
 });
 
 /* Get list by robot*/
