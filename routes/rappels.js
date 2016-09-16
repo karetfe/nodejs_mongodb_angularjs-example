@@ -20,7 +20,7 @@ router.get('/search/robot/:_id',function(req,res){
 });
 
 /* Get By robot_id where suppr=0 */
-router.get('/search/robot/:_id',function(req,res){
+router.get('/search/robot/suppre/:_id',function(req,res){
 	models.rappel.find({robot:req.params._id},function(err,rappel){
 		if(err, suppre==0) res.json({error: err});
 		res.json(rappel);
