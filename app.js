@@ -36,53 +36,42 @@ app.post('/authenticate', function(req, res) {
   var User = require('./models/user');
      var Robot = require('./models/robot');
     
-  // find the user   
+  // find the user
   User.findOne({
     username: req.body.username
-  }, function(err, user) {
+  }, function(err, user,robot) {
+
     if (err) throw err;
+
     if (!user) {
       res.json({ success: false, message: 'Authentication failed. User not found :-)' });
     } else if (user) {
+
       // check if password matches
       if (user.password != req.body.password) {
         res.json({ success: false, message: 'Authentication failed. Wrong password.' });
       } else {
+
         // if user is found and password is right
         // create a token
         var token = jwt.sign(user, require('./config/jwt'), {
           //expiresInMinutes: 1440 // expires in 24 hours
-        });          
-        // return the information including token as JSON
-       //   var query = Robot.find({}).groupby('user').where('user', user._id);
-       //   query.exec(function (err, docs) {
-              // called when the `query.complete` or `query.error` are called
-              // internally
-        //  });
-        Robot.aggregate([
-        {
-            "$group": {
-                "_id": "$user",
-                "robots": { "$push": "$$ROOT" }
-            }
-        }
-    ]).exec(function(err, results){ 
-        if (err) res.json({error: err});
-        User.populate(results, { "path": "_id" }, { _id : user._id },function(err, result) {
-           // if(err) res.json({error: err});
-            console.log(result);
-            res.json({result,              
-            success: true, 
-            message: 'Authenticated: Enjoy your token!',
-            token: token
-        });	
-            //res.json(result);
         });
-     });
-        
+
+        // return the information including token as JSON
+
+        res.json({user,              
+          success: true, 
+          message: 'Authenticated: Enjoy your token!',
+          token: token,
+
+        });
+	
       }
+
     }
-  });     
+
+  });
 });
 
 app.use('/', require('./routes'));
