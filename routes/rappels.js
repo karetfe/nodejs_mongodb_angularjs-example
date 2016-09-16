@@ -20,14 +20,20 @@ router.get('/search/robot/:_id',function(req,res){
 });
 
 /* Get By robot_id where suppr=0 */
-router.get('/search/robot/suppre/:_id',function(req,res){
+/*router.get('/search/robot/suppre/:_id',function(req,res){
   //var suppre = req.body.suppre;   
-	models.rappel.find({robot:req.params._id},{ "suppre": "0"}, function(err,rappel){
+	models.rappel.find({robot:req.params._id},{ "suppre": 0}, function(err,rappel){
 		if(err) res.json({error: err});
 		res.json(rappel);
     });
+});*/
+router.get('/search/robot/suppre/:_id',function(req,res){
+var query = models.rappel.find({}).where('suppre', 0);
+query.exec(function (err, docs) {
+  	if(err) res.json({error: err});
+		res.json(docs);
 });
-
+});
 /* Get list by robot*/
 router.get('/', function(req, res, next){
     models.rappel.aggregate([
