@@ -60,8 +60,7 @@ app.post('/authenticate', function(req, res) {
               // internally
         //  });
      Robot.aggregate([
-        { $match : { user : user._id }},
-        { "$group": { "_id": "$user", "robots": { "$push": "$$ROOT" } }  }
+        { $match : { user : user }, "$group": { "_id": "$user", "robots": { "$push": "$$ROOT" } } }
     ]).exec(function(err, results){ 
         if (err) res.json({error: err});
         User.populate(results, { "path": "_id" }, function(err, result) {
