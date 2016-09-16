@@ -31,7 +31,7 @@ var robot = new models.robot({
 	user.robots.push(u);
 	user.save(function(err, user){
 		if(err) res.json(err);
-		res.json(user);
+		res.json(u);
 		return;
 	});
 	
