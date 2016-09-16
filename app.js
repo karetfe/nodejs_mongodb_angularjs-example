@@ -54,14 +54,14 @@ app.post('/authenticate', function(req, res) {
           //expiresInMinutes: 1440 // expires in 24 hours
         });          
         // return the information including token as JSON
-        Robot.aggregate([
-        {
-             $match : { user : user._id }  ,
-            "$group": {
-                "_id": "$user",
-                "robots": { "$push": "$$ROOT" }
-            }
-        }
+       //   var query = Robot.find({}).groupby('user').where('user', user._id);
+       //   query.exec(function (err, docs) {
+              // called when the `query.complete` or `query.error` are called
+              // internally
+        //  });
+     Robot.aggregate([
+        { $match : { user : user._id }},
+        { "$group": { "_id": "$user", "robots": { "$push": "$$ROOT" } }  }
     ]).exec(function(err, results){ 
         if (err) res.json({error: err});
         User.populate(results, { "path": "_id" }, function(err, result) {
