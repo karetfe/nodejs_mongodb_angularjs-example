@@ -74,7 +74,7 @@ app.post('/authenticate', function(req, res) {
                 {result,  
                 success: true, 
                 message: 'Authenticated: Enjoy your token!',
-                token: token,);
+                token: token
                 });
      }); 
         // return the information including token as JSON
