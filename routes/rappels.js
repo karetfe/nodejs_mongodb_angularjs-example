@@ -3,6 +3,14 @@ var router = express.Router();
 var models = require('../models');
 
 
+/* GET rappel by _id*/
+router.get('/:id', function(req, res, next) {
+    models.rappel.findById(req.params.id, function(err, rappel) {
+      if(err) res.json({error: err});
+        res.json(rappel);
+        });
+  });
+});
 /* Get By robot_id*/
 router.get('/search/robot/:_id',function(req,res){
 	models.rappel.find({robot:req.params._id},function(err,rappel){
