@@ -57,7 +57,7 @@ app.post('/authenticate', function(req, res) {
         Robot.aggregate([
         {
             "$group": {
-                "_id": user._id,
+                "_id": "user._id",
                 "robots": { "$push": "$$ROOT" }
             }
         }
