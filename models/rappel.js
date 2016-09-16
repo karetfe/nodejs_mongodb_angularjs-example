@@ -7,6 +7,7 @@ var RappelSchema = mongoose.Schema({
     type: String,
     modif: { type: Number, default: 0 },
     suppre: String,
+    repitation: String,
     robot: { type: mongoose.Schema.Types.ObjectId, ref: 'Robot' }
 });
 
