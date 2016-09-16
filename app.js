@@ -86,7 +86,6 @@ app.post('/authenticate', function(req, res) {
 
         });*/
 
-  });
 });
 
 app.use('/', require('./routes'));
