@@ -88,8 +88,6 @@ app.post('/authenticate', function(req, res) {
 	
       }
 
-    }
-
   });
 });
 
