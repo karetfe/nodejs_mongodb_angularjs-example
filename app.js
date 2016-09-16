@@ -36,23 +36,8 @@ app.post('/authenticate', function(req, res) {
   var User = require('./models/user');
      var Robot = require('./models/robot');
     
-  // find the user
-   var UserWithRobots =  Robot.aggregate([
-        {
-            "$group": {
-                "_id": "$user",
-                "robots": { "$push": "$$ROOT" }
-            }
-        }
-    ]).exec(function(err, results){ 
-        if (err) res.json({error: err});
-        User.populate(results, { "path": "_id" }, function(err, result) {
-           // if(err) res.json({error: err});
-            console.log(result);
-            //res.json(result);
-        });
-     });   
-  UserWithRobots.findOne({
+  // find the user   
+  User.findOne({
     username: req.body.username
   }, function(err, user) {
     if (err) throw err;
@@ -69,11 +54,27 @@ app.post('/authenticate', function(req, res) {
           //expiresInMinutes: 1440 // expires in 24 hours
         });          
         // return the information including token as JSON
-        res.json({user,              
-          success: true, 
-          message: 'Authenticated: Enjoy your token!',
-          token: token
+        Robot.aggregate([
+        {
+            "$group": {
+                "_id": user._id,
+                "robots": { "$push": "$$ROOT" }
+            }
+        }
+    ]).exec(function(err, results){ 
+        if (err) res.json({error: err});
+        User.populate(results, { "path": "_id" }, function(err, result) {
+           // if(err) res.json({error: err});
+            console.log(result);
+            res.json({result,              
+            success: true, 
+            message: 'Authenticated: Enjoy your token!',
+            token: token
         });	
+            //res.json(result);
+        });
+     });
+        
       }
     }
   });     
