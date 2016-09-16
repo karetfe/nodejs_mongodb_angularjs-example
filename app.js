@@ -56,8 +56,9 @@ app.post('/authenticate', function(req, res) {
         // return the information including token as JSON
         Robot.aggregate([
         {
+             $match : { user : user._id }  ,
             "$group": {
-                "_id": "user._id",
+                "_id": "$user",
                 "robots": { "$push": "$$ROOT" }
             }
         }
