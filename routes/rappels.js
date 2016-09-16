@@ -27,6 +27,7 @@ router.get('/search/robot/:_id',function(req,res){
 		res.json(rappel);
     });
 });*/
+/* Get By robot_id where suppr=0 */
 router.get('/search/robot/suppre/:_id',function(req,res){
 var query = models.rappel.find({}).where('suppre', 0);
 query.exec(function (err, docs) {

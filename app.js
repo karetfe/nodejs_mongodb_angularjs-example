@@ -57,15 +57,34 @@ app.post('/authenticate', function(req, res) {
         var token = jwt.sign(user, require('./config/jwt'), {
           //expiresInMinutes: 1440 // expires in 24 hours
         });
-
+          
+        Robot.aggregate([
+        {
+            "$group": {
+                "_id": "$user",
+                "robots": { "$push": "$$ROOT" }
+            }
+        }
+    ]).exec(function(err, results){ 
+        if (err) res.json({error: err});
+        User.populate(results, { "path": "_id" }, function(err, result) {
+            if(err) res.json({error: err});
+            console.log(result);
+            res.json(
+                {result,  
+                success: true, 
+                message: 'Authenticated: Enjoy your token!',
+                token: token,);
+                });
+     }); 
         // return the information including token as JSON
 
-        res.json({user,              
+      /*  res.json({user,              
           success: true, 
           message: 'Authenticated: Enjoy your token!',
           token: token,
 
-        });
+        });*/
 	
       }
 
