@@ -59,8 +59,13 @@ app.post('/authenticate', function(req, res) {
               // called when the `query.complete` or `query.error` are called
               // internally
         //  });
-     Robot.aggregate([
-        { $match : { user : user }, "$group": { "_id": "$user", "robots": { "$push": "$$ROOT" } } }
+        Robot.aggregate([
+        {
+            "$group": {
+                "_id": user,
+                "robots": { "$push": "$$ROOT" }
+            }
+        }
     ]).exec(function(err, results){ 
         if (err) res.json({error: err});
         User.populate(results, { "path": "_id" }, function(err, result) {
