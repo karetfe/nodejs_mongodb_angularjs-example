@@ -10,7 +10,7 @@ router.get('/:id', function(req, res, next) {
         res.json(rappel);
         });
   });
-});
+
 /* Get By robot_id*/
 router.get('/search/robot/:_id',function(req,res){
 	models.rappel.find({robot:req.params._id},function(err,rappel){
