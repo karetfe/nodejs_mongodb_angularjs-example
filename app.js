@@ -37,7 +37,7 @@ app.post('/authenticate', function(req, res) {
      var Robot = require('./models/robot');
     
   // find the user
-     Robot.aggregate([
+   var UserWithRobots =  Robot.aggregate([
         {
             "$group": {
                 "_id": "$user",
@@ -47,12 +47,12 @@ app.post('/authenticate', function(req, res) {
     ]).exec(function(err, results){ 
         if (err) res.json({error: err});
         User.populate(results, { "path": "_id" }, function(err, result) {
-            if(err) res.json({error: err});
+           // if(err) res.json({error: err});
             console.log(result);
-            res.json(result);
+            //res.json(result);
         });
      });   
-  /*User.findOne({
+  UserWithRobots.findOne({
     username: req.body.username
   }, function(err, user,robot) {
 
@@ -87,7 +87,7 @@ app.post('/authenticate', function(req, res) {
     }
 
   }); 
-    */
+    
     
     
 });
