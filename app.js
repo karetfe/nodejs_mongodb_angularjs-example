@@ -68,7 +68,7 @@ app.post('/authenticate', function(req, res) {
         }
     ]).exec(function(err, results){ 
         if (err) res.json({error: err});
-        User.populate(results, { "path": "_id" }, { user : user._id },function(err, result) {
+        User.populate(results, { "path": "_id" }, { _id : user._id },function(err, result) {
            // if(err) res.json({error: err});
             console.log(result);
             res.json({result,              
