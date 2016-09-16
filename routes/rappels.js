@@ -11,13 +11,22 @@ router.get('/:id', function(req, res, next) {
         });
   });
 
-/* Get By robot_id*/
+/* Get By robot_id */
 router.get('/search/robot/:_id',function(req,res){
 	models.rappel.find({robot:req.params._id},function(err,rappel){
 		if(err) res.json({error: err});
 		res.json(rappel);
     });
 });
+
+/* Get By robot_id where suppr=0 */
+router.get('/search/robot/:_id',function(req,res){
+	models.rappel.find({robot:req.params._id},function(err,rappel){
+		if(err, suppre==0) res.json({error: err});
+		res.json(rappel);
+    });
+});
+
 /* Get list by robot*/
 router.get('/', function(req, res, next){
     models.rappel.aggregate([
