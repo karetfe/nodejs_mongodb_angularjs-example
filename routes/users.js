@@ -20,20 +20,17 @@ var robot = new models.robot({
     nom: req.body.nom
   		
  });
-
-
+    
+ //user.save(function(err, u){
+ //    if(err) res.json(err);
+ //    res.json(u);
+ //})
  robot.save(function(err, u){
-     
     if(err) res.json(err);
-     
 	//save user only after robot is successfully saved and push its id into robots array.
 	user.robots.push(u._id);
 	user.save(function(err, user){
-		//if(err) res.json(err);
-        user.findOne({ username: req.body.username, password: req.body.password}, function(err, user,robot) {
-     if (user.password != req.body.password || user.password != req.body.password || robot.reference != req.body.reference) {
-        res.json({ success: false, message: 'Authentication failed.' });
-      }
+		if(err) res.json(err);
 		res.json(user);
 		return;
 	});
