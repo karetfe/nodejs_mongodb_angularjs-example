@@ -38,7 +38,7 @@ var robot = new models.robot({
 	
     //res.json(u);
  });
- });
+
 
 
 router.use(function(req, res, next) {
